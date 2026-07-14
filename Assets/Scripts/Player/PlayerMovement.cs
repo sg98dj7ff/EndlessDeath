@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
-            _rigidbody.linearVelocity = new Vector2(_rigidbody.linearVelocity.x, _jumpForce);
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpForce);
         }
 
         ApplyVariableJumpHeight();
@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rigidbody.linearVelocity = new Vector2(_horizontalInput * _moveSpeed, _rigidbody.linearVelocity.y);
+        _rigidbody.velocity = new Vector2(_horizontalInput * _moveSpeed, _rigidbody.velocity.y);
         UpdateFacingDirection();
     }
 
@@ -44,9 +44,9 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void ApplyVariableJumpHeight()
     {
-        if (Input.GetButtonUp("Jump") && _rigidbody.linearVelocity.y > 0f)
+        if (Input.GetButtonUp("Jump") && _rigidbody.velocity.y > 0f)
         {
-            _rigidbody.linearVelocity = new Vector2(_rigidbody.linearVelocity.x, _rigidbody.linearVelocity.y * 0.5f);
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y * 0.5f);
         }
     }
 
